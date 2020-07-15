@@ -21,21 +21,21 @@ const mutations = {
   },
   SET_NAME: (state, name) => {
     state.name = name
-  },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
   }
+  // SET_AVATAR: (state, avatar) => {
+  //   state.avatar = avatar
+  // }
 }
 
 const actions = {
   // user login
   login({ commit }, userInfo) {
-    const { username, password } = userInfo
+    const { email, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      login({ email: email.trim(), password: password }).then(response => {
         const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        commit('SET_TOKEN', data)
+        setToken(data)
         resolve()
       }).catch(error => {
         reject(error)
@@ -48,15 +48,14 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
         const { data } = response
-
         if (!data) {
           return reject('Verification failed, please Login again.')
         }
 
-        const { name, avatar } = data
+        const { username } = data
 
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
+        commit('SET_NAME', username)
+        // commit('SET_AVATAR', rolerList)
         resolve(data)
       }).catch(error => {
         reject(error)

@@ -24,7 +24,7 @@ export function validUsername(str) {
  * @returns {Boolean}
  * @description 校验邮箱格式是否正确
  *  */
-export function validEmail(str){
-  const match=/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
-  return match.test(str)
+export function validEmail(str) {
+  const emaiExp = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+  return emaiExp.test(str)
 } 
